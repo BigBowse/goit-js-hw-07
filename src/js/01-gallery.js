@@ -22,14 +22,8 @@ gallery.insertAdjacentHTML('afterbegin', galleryMarkup);
 
 function onGalleryClick(e) {
     e.preventDefault();
-    // const isGalleryItem = e.target.classList.contains('.gallery__image');
-
-    // if(!isGalleryItem) {
-    //     return;
-    // }
 
     const bigImgSrc = e.target.dataset.source;
-    console.log(bigImgSrc);
         
     const instance = basicLightbox.create(`
     <img src="${bigImgSrc}" width="800" height="600">
