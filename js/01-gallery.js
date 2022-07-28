@@ -22,20 +22,24 @@ gallery.insertAdjacentHTML('afterbegin', galleryMarkup);
 
 function onGalleryClick(e) {
     e.preventDefault();
-    // const isGalleryItem = e.target.classList.contains('.gallery__image');
 
-    // if(!isGalleryItem) {
-    //     return;
-    // }
+    if(e.target.nodeName !== 'IMG') {
+        return;
+    }
 
-    const bigImgSrc = e.target.dataset.source;
-    console.log(bigImgSrc);
+    const bigImgSrc = e.target.dataset.source;  
         
     const instance = basicLightbox.create(`
     <img src="${bigImgSrc}" width="800" height="600">
-    `);
-
+    `,);
+    // Opening modal with img
     instance.show();
+    // Closing modal by pressing ESC 
+    window.addEventListener('keyup', (e) => {
+      if (e.code === "Escape") {
+        instance.close();
+      }
+    });
 }
 
 gallery.addEventListener('click', onGalleryClick);
