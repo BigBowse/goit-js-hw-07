@@ -16,6 +16,21 @@ const markup = galleryItems.map(({ original, preview, description }) =>
 const gallery = document.querySelector('.gallery');
 gallery.insertAdjacentHTML('afterbegin', markup);
 
+function onEscClose(e) {
+  if (e.code === "Escape") {
+        instance.close();
+      }
+}
+
+const lightboxDisplay = {
+  onShow: () => {
+    window.addEventListener('keydown', onEscClose);
+  }, 
+  onClose: () => {
+    window.removeEventListener('keydown', onEscClose);
+  }
+}
+
 function onGalleryClick(e) {
     e.preventDefault();
 
@@ -27,15 +42,8 @@ function onGalleryClick(e) {
         
     const instance = basicLightbox.create(`
     <img src="${bigImgSrc}" width="800" height="600">
-    `,);
-    // Opening modal with img
+    `, lightboxDisplay);
     instance.show();
-    // Closing modal by pressing ESC 
-    window.addEventListener('keyup', (e) => {
-      if (e.code === "Escape") {
-        instance.close();
-      }
-    });
 }
 
 gallery.addEventListener('click', onGalleryClick);
