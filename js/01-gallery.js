@@ -24,10 +24,10 @@ function onEscClose(e) {
 
 const lightboxDisplay = {
   onShow: () => {
-    window.addEventListener('keydown', onEscClose);
+    document.addEventListener('keydown', onEscClose);
   }, 
   onClose: () => {
-    window.removeEventListener('keydown', onEscClose);
+    document.removeEventListener('keydown', onEscClose);
   }
 }
 
