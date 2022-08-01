@@ -13,6 +13,8 @@ const markup = galleryItems.map(({ original, preview, description }) =>
   </div>`
 ).join('');
 
+let instance = {};
+
 const gallery = document.querySelector('.gallery');
 gallery.insertAdjacentHTML('afterbegin', markup);
 
@@ -40,7 +42,7 @@ function onGalleryClick(e) {
 
     const bigImgSrc = e.target.dataset.source;  
         
-    const instance = basicLightbox.create(`
+    instance = basicLightbox.create(`
     <img src="${bigImgSrc}" width="800" height="600">
     `, lightboxDisplay);
     instance.show();
